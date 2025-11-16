@@ -75,8 +75,10 @@ export async function getAdapterRoutes({ adapter, chain, from, to, amount, extra
 		let price;
 		let amountIn = amount;
 
+		// Alpha Router must always use direct calls - DefiLlama doesn't support it
+		const shouldUseDirect = adapter.name === 'Alpha Router';
 		const quouteFunc =
-			extra.isPrivacyEnabled || adaptersWithApiKeys[adapter.name]
+			!shouldUseDirect && (extra.isPrivacyEnabled || adaptersWithApiKeys[adapter.name])
 				? partial(redirectQuoteReq, adapter.name)
 				: adapter.getQuote;
 		if (adapter.isOutputAvailable) {
