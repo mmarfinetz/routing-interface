@@ -21,7 +21,6 @@ const Header = ({ children }) => {
 				fontSize={['26px', '26px', '32px', '32px']}
 				display="flex"
 				alignItems="center"
-				onClick={() => window.open('https://swap.defillama.com/')}
 				cursor="pointer"
 			>
 				<Image
@@ -31,7 +30,7 @@ const Header = ({ children }) => {
 					mr="8px"
 					alt="logo"
 				/>
-				LlamaSwap
+				Alpha Router
 			</Name>
 			{children}
 		</Wrapper>
