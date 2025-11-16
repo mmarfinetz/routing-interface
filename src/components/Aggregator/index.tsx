@@ -24,10 +24,9 @@ import {
 	PopoverTrigger,
 	PopoverContent
 } from '@chakra-ui/react';
-import ReactSelect from '~/components/MultiSelect';
 import FAQs from '~/components/FAQs';
 import SwapRoute, { LoadingRoute } from '~/components/SwapRoute';
-import { adaptersNames, getAllChains, swap, gaslessApprove, signatureForSwap } from './router';
+import { adaptersNames, swap, gaslessApprove, signatureForSwap } from './router';
 import { inifiniteApprovalAllowed } from './list';
 import Loader from './Loader';
 import { useTokenApprove } from './hooks';
@@ -121,6 +120,8 @@ enum STATES {
 	INPUT,
 	ROUTES
 }
+
+// Removed chain selector - Base Router is Base-only
 
 const Body = styled.div`
 	display: flex;
@@ -327,8 +328,6 @@ interface IFinalRoute extends IRoute {
 	amountInUsd: string | null;
 }
 
-const chains = getAllChains();
-
 export function AggregatorContainer() {
 	// wallet stuff
 	const { address, isConnected, chain: chainOnWallet } = useAccount();
@@ -532,22 +531,7 @@ export function AggregatorContainer() {
 			}
 		}
 	};
-	const onChainChange = (newChain) => {
-		setAggregator(null);
-		setAmount(['10', '']);
-		router
-			.push(
-				{
-					pathname: '/',
-					query: { ...router.query, chain: newChain.value, from: zeroAddress, to: undefined }
-				},
-				undefined,
-				{ shallow: true }
-			)
-			.then(() => {
-				if (switchChain) switchChain({ chainId: newChain.chainId });
-			});
-	};
+	// Removed onChainChange - Base Router is Base-only
 	const onFromTokenChange = (token) => {
 		setAggregator(null);
 		router.push({ pathname: router.pathname, query: { ...router.query, from: token.address } }, undefined, {
@@ -1127,7 +1111,17 @@ export function AggregatorContainer() {
 					<div>
 						<FormHeader>
 							<Flex>
-								<Box>Chain</Box>
+								<Box>
+									<Flex alignItems="center" gap="6px">
+										<img
+											src="https://raw.githubusercontent.com/base-org/brand-kit/main/logo/symbol/Base_Symbol_Blue.svg"
+											width="20"
+											height="20"
+											alt="Base"
+										/>
+										<Text fontWeight="bold" color="#0052FF">Base Network</Text>
+									</Flex>
+								</Box>
 								<Spacer />
 								<Tooltip content="Redirect requests through the DefiLlama Server to hide your IP address">
 									<FormControl display="flex" alignItems="baseline" gap="6px" justifyContent={'center'}>
@@ -1153,8 +1147,16 @@ export function AggregatorContainer() {
 								) : null}
 							</Flex>
 						</FormHeader>
-
-						<ReactSelect options={chains} value={selectedChain} onChange={onChainChange} />
+						<Box
+							bg="rgba(0, 82, 255, 0.1)"
+							p="8px"
+							borderRadius="8px"
+							fontSize="12px"
+							color="#0052FF"
+							textAlign="center"
+						>
+							Evolutionary routing discovers optimal paths across 500+ pools with 0% fees
+						</Box>
 					</div>
 
 					<Flex flexDir="column" gap="4px" pos="relative">
@@ -1777,15 +1779,8 @@ export function AggregatorContainer() {
 
 			{window === parent ? <FAQs /> : null}
 			<Text fontSize="1rem" fontWeight="500" display={{ base: 'none', md: 'block', lg: 'block' }}>
-				This product is still in beta. If you run into any issue please let us know in our{' '}
-				<a
-					style={{ textDecoration: 'underline' }}
-					target={'_blank'}
-					rel="noreferrer noopener"
-					href="https://discord.swap.defillama.com/"
-				>
-					discord server
-				</a>
+				Base Router uses evolutionary algorithms to find optimal swap paths with 0% fees.{' '}
+				Built for Base memecoin traders who demand the best execution.
 			</Text>
 			<TransactionModal open={txModalOpen} setOpen={setTxModalOpen} link={txUrl} />
 		</Wrapper>

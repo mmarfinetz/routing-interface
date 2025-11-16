@@ -14,7 +14,7 @@ export default function Aggregator() {
 		{ id: 'refuel', name: 'Gas Refuel', content: <SmolRefuel /> }
 	];
 	return (
-		<Layout title={`Alpha Router - GA-Optimized DEX Aggregator`} defaultSEO>
+		<Layout title={`Base Router - Evolutionary DEX Routing with 0% Fees`} defaultSEO>
 			<Tabs tabs={tabData} />
 		</Layout>
 	);

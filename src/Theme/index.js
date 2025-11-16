@@ -42,14 +42,14 @@ const theme = (mode = 'dark') => {
 		advancedBG: 'rgba(0,0,0,0.1)',
 		divider: 'rgba(43, 43, 43, 0.435)',
 
-		//primary colors
-		primary1: '#2172E5',
+		//primary colors - Base Blue
+		primary1: '#0052FF',
 
 		// other
 		red1: '#FF6871',
 		green1: '#27AE60',
-		link: '#2172E5',
-		blue: '#2f80ed',
+		link: '#0052FF',
+		blue: '#0052FF',
 
 		//shadow
 		shadowSm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',

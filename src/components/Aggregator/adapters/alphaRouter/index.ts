@@ -52,12 +52,9 @@ export async function getQuote(chain: string, from: string, to: string, amount: 
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				chain: 'base',
-				fromToken: tokenFrom,
-				toToken: tokenTo,
-				amountIn: amount,
-				userAddress: extra.userAddress !== zeroAddress ? extra.userAddress : undefined,
-				slippage: extra.slippage
+				tokenIn: tokenFrom,
+				tokenOut: tokenTo,
+				amountIn: amount
 			})
 		});
 

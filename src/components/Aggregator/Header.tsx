@@ -1,6 +1,5 @@
 import { Heading, Image } from '@chakra-ui/react';
 import styled from 'styled-components';
-import loaderImg from '~/public/loader.png';
 
 const Wrapper = styled.div`
 	position: absolute;
@@ -21,17 +20,16 @@ const Header = ({ children }) => {
 				fontSize={['26px', '26px', '32px', '32px']}
 				display="flex"
 				alignItems="center"
-				onClick={() => window.open('https://swap.defillama.com/')}
 				cursor="pointer"
 			>
 				<Image
-					src={loaderImg.src}
+					src="https://raw.githubusercontent.com/base-org/brand-kit/main/logo/symbol/Base_Symbol_Blue.svg"
 					w={['28px', '28px', '36px', '36px']}
 					h={['28px', '28px', '36px', '36px']}
 					mr="8px"
-					alt="logo"
+					alt="Base Router logo"
 				/>
-				LlamaSwap
+				Base Router
 			</Name>
 			{children}
 		</Wrapper>
