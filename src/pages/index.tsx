@@ -14,7 +14,7 @@ export default function Aggregator() {
 		{ id: 'refuel', name: 'Gas Refuel', content: <SmolRefuel /> }
 	];
 	return (
-		<Layout title={`Meta-dex aggregator - DefiLlama`} defaultSEO>
+		<Layout title={`Alpha Router - GA-Optimized DEX Aggregator`} defaultSEO>
 			<Tabs tabs={tabData} />
 		</Layout>
 	);
