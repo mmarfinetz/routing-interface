@@ -20,7 +20,7 @@ import { formatAddress } from '~/utils/formatAddress';
 import { topTokensByChain } from '../Aggregator/constants';
 
 const Row = ({ chain, token, onClick, style }) => {
-	const blockExplorer = allChains.find((c) => c.id == chain.id)?.blockExplorers?.default;
+	const blockExplorer = chain ? allChains.find((c) => c.id == chain.id)?.blockExplorers?.default : undefined;
 	return (
 		<PairRow
 			key={token.value}
@@ -277,7 +277,7 @@ const SelectModal = ({ dialogState, data, onTokenSelect, selectedChain, isLoadin
 										<TopTokenWrapper>
 											{topTokens.map((token) => (
 												<TopToken
-													key={`top-token-${selectedChain.id}-${token.address}`}
+													key={`top-token-${selectedChain?.id ?? 'unknown'}-${token.address}`}
 													onClick={() => {
 														onTokenSelect(token);
 													}}
